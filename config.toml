@@ -1,0 +1,103 @@
+mod_key = "alt"
+focus_follows_mouse = false
+autostart = [
+    "eval $(gnome-keyring-daemon --start --components=secrets,ssh) && systemctl --user import-environment SSH_AUTH_SOCK GNOME_KEYRING_CONTROL && dbus-update-activation-environment SSH_AUTH_SOCK GNOME_KEYRING_CONTROL",
+    "/usr/lib/polkit-kde-authentication-agent-1",
+    "# Widgets",
+    "dunst",
+    "waybar -c ~/.config/waybar/driftWMcfg/config.jsonc",
+    "waybar -c ~/.config/waybar/driftWMcfg/config2.jsonc",
+    "# Clipboard",
+    "wl-paste --type text  --watch cliphist store",
+    "wl-paste --type image --watch cliphist store",
+    "kitty hack",
+]
+
+[env]
+QT_QPA_PLATFORMTHEME = "qt6ct"
+
+[input.keyboard]
+layout = "us,ru"
+options = "grp:caps_toggle"
+repeat_rate = 60
+repeat_delay = 200
+
+[input.mouse]
+accel_speed = 0.5
+accel_profile = "adaptive"
+natural_scroll = true
+
+[cursor]
+theme = "Adwaita"
+size = 24
+
+[navigation]
+trackpad_speed = 1.6
+animation_speed = 0.25
+nudge_step = 20
+pan_step = 80.0
+
+[zoom]
+reset_on_new_window = false
+
+[snap]
+same_edge = true
+
+[decorations]
+bg_color = "#000000"
+fg_color = "#FFFFFF"
+corner_radius = 12
+default_mode = "client"
+
+[effects]
+blur_radius = 3
+blur_strength = 1.3
+
+[output.outline]
+color = "#FDF6E3"
+
+[background]
+shader_path = "/home/amnez1a/.config/driftwm/custom_shader.glsl"
+
+[backend]
+wait_for_frame_completion = true
+disable_direct_scanout = true
+
+[keybindings]
+"super+v" = "exec cliphist list | rofi -dmenu -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy"
+"super+d" = "exec rofi -show drun"
+"super+w" = "exec pkill -SIGUSR1 waybar"
+"mod+escape" = "exec wlogout"
+"super+shift+n" = "exec playerctl next"
+"super+shift+b" = "exec playerctl previous"
+"mod+m" = "exec kitty"
+"super+shift+w" = "exec killall waybar; waybar -c ~/.config/waybar/driftWMcfg/config.jsonc & waybar -c ~/.config/waybar/driftWMcfg/config2.jsonc"
+"mod+f12" = "exec hyprshot -m region -o ~/Изображения/Screenshots"
+"super+m" = "exec rofi -show emoji"
+"mod+f11" = "exec hyprshot -m output -o ~/Изображения/Screenshots"
+"super+shift+p" = "exec playerctl play-pause"
+"mod+shift+f12" = "exec hyprshot -m window -o ~/Изображения/Screenshots"
+
+[[window_rules]]
+app_id = "kitty"
+decoration = "borderless"
+blur = true
+opacity = 0.7999999999999998
+
+[[window_rules]]
+app_id = "neovide"
+decoration = "borderless"
+blur = true
+opacity = 0.7999999999999998
+
+[[window_rules]]
+app_id = "obsidian"
+decoration = "borderless"
+blur = true
+opacity = 0.7999999999999998
+
+[[window_rules]]
+app_id = "vesktop"
+decoration = "client"
+blur = true
+opacity = 0.7999999999999998
